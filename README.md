@@ -3,6 +3,7 @@
  <b> Plan Test Case Automation </b>
  
  <li>User mengakses halaman web
+ <li>User memilih kategori Bumbu Asia
  <li>User click menu Asian Tofu Lasagna
  <li>User menambahkan catatan pada pesanan (optional)
  <li>User click tombol Add To Cart (User dapat menentukan jumlah produk yang akan dibeli)
