@@ -8,6 +8,7 @@
  <li>User menambahkan catatan pada pesanan (optional)
  <li>User click tombol Add To Cart (User dapat menentukan jumlah produk yang akan dibeli)
  <li>User click menu Asian Chicken Blackpepper Bento
+ <li>User click tombol Add To Cart
  <li>User click view cart untuk melihat pesanannya 
  <li>User tidak jadi memesan Asian Chicken Blackpepper Bento dengan mengclick button minus pada menu Asian Chicken Blackpepper Bento
  <li>User mengisi Order Information : Nama dan Nomor whatsapp
