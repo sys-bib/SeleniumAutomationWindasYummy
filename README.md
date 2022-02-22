@@ -14,6 +14,7 @@
  <li>User mengisi Order Information : Nama dan Nomor whatsapp
  <li>User click Proceed To Checkout 
  <li>User mengisi email untuk melengkapi informasi order
+ <li>User click tombol next untuk melanjutkan ke metode pembayaran
  <li>User memilih OVO untuk Order Method
  <li>User click Choose Method
  <li>User mengisi nomor hp yang sudah teregister di ovo
