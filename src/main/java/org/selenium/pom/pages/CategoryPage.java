@@ -1,8 +1,12 @@
 package org.selenium.pom.pages;
 
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.selenium.pom.base.BasePage;
+import org.selenium.pom.objects.Order;
 
 public class CategoryPage extends BasePage {
     private final By menuAsianTofu = By.xpath("//*[@id=\"__next\"]/section/main/div[2]/div/div/div/div/div[4]");
@@ -11,82 +15,100 @@ public class CategoryPage extends BasePage {
     private final By menuAsianChicken = By.xpath("//*[@id=\"__next\"]/section/main/div[2]/div/div/div/div/div[5]");
     private final By addToCartBtnChicken = By.xpath("/html/body/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[4]/button");
     private final By viewCart = By.xpath("//*[@id=\"__next\"]/div[2]");
-    private final By title = By.xpath("//*[@id=\"__next\"]/div[2]");
+    private final By titleTofu = By.xpath("/html/body/div[2]/div/div[2]/div/div/div[2]/form/div[1]/div[1]/div/div[1]/div[1]/div[1]/div/div[2]");
+    private final By titleChicken = By.xpath("/html/body/div[2]/div/div[2]/div/div/div[2]/form/div[1]/div[1]/div/div[2]/div[1]/div[1]/div/div[2]");
     private final By removeMenu = By.xpath("/html/body/div[2]/div/div[2]/div/div/div[2]/form/div[1]/div[1]/div/div[2]/div[3]/div[2]/div/div[1]");
     private final By addName = By.xpath("/html/body/div[2]/div/div[2]/div/div/div[2]/form/div[1]/div[4]/div/div/div[1]/input");
     private final By addPhoneNumber = By.xpath("/html/body/div[2]/div/div[2]/div/div/div[2]/form/div[1]/div[6]/div/div/div[1]/input");
-    private final By prosesCheckout = By.xpath("/html/body/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/button");
+    private final By checkoutLink = By.xpath("/html/body/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/button");
 
     public CategoryPage(WebDriver driver){
         super(driver);
     }
 
     //Order Tofu
-    private CategoryPage clickMenuAsiaTofu(){
-        driver.findElement(menuAsianTofu).click();
+    private CategoryPage clickMenuAsiaTofu() throws InterruptedException {
+        Thread.sleep(5000);
+        wait.until(ExpectedConditions.elementToBeClickable(menuAsianTofu)).click();
+        //driver.findElement(menuAsianTofu).click();
         return this;
     }
     private CategoryPage enterNoteOrder(String txt){
-        driver.findElement(noteOrder).sendKeys(txt);
+        WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(noteOrder));
+        e.sendKeys(txt);
+        //driver.findElement(noteOrder).sendKeys(txt);
         return this;
     }
     private CategoryPage clickAddToCartBtnTofu(){
-        driver.findElement(addToCartBtnTofu).click();
+        wait.until(ExpectedConditions.elementToBeClickable(addToCartBtnTofu)).click();
+        //driver.findElement(addToCartBtnTofu).click();
         return this;
     }
 
-    public CategoryPage orderAsianTofu(String txt){
-        clickMenuAsiaTofu().enterNoteOrder(txt).clickAddToCartBtnTofu();
-        return this;
+    public CategoryPage orderAsianTofu(String txt) throws InterruptedException {
+        return clickMenuAsiaTofu().enterNoteOrder(txt).clickAddToCartBtnTofu();
     }
     //--
 
     //Order Chicken
     private CategoryPage clickMenuAsianChicken(){
-        driver.findElement(menuAsianChicken).click();
+        wait.until(ExpectedConditions.elementToBeClickable(menuAsianChicken)).click();
+        //driver.findElement(menuAsianChicken).click();
         return this;
     }
     private CategoryPage clickAddToCartBtnChicken(){
-        driver.findElement(addToCartBtnChicken).click();
+        wait.until(ExpectedConditions.elementToBeClickable(addToCartBtnChicken)).click();
+        //driver.findElement(addToCartBtnChicken).click();
         return this;
     }
 
     public CategoryPage orderAsianChicken(){
-        clickMenuAsianChicken().clickAddToCartBtnChicken();
-        return this;
+        return clickMenuAsianChicken().clickAddToCartBtnChicken();
     }
     //--
 
-    public void clickViewCart(){
-        driver.findElement(viewCart).click();
+    public CategoryPage clickViewCart(){
+        wait.until(ExpectedConditions.elementToBeClickable(viewCart)).click();
+        //driver.findElement(viewCart).click();
+        return this;
     }
-    public String getTittle(){
-        return driver.findElement(title).getText();
+    public String getProductTofu(){
+        return wait.until(ExpectedConditions.elementToBeClickable(titleTofu)).getText();
+    }
+    public String getProductChicken(){
+        return wait.until(ExpectedConditions.elementToBeClickable(titleChicken)).getText();
+    }
+    public CategoryPage clickRemoveMenu(){
+        wait.until(ExpectedConditions.elementToBeClickable(removeMenu)).click();
+        //driver.findElement(removeMenu).click();
+        return this;
     }
 
     //Melengkapi Order
-    private CategoryPage clickRemoveMenu(){
-        driver.findElement(removeMenu).click();
-        return this;
-    }
     private CategoryPage enterAddName(String txt){
-        driver.findElement(addName).sendKeys(txt);
+        WebElement n = wait.until(ExpectedConditions.visibilityOfElementLocated(addName));
+        n.sendKeys(txt);
+        //driver.findElement(addName).sendKeys(txt);
         return this;
     }
     private CategoryPage enterAddPhoneNumber(String txt){
-        driver.findElement(addPhoneNumber).sendKeys(txt);
-        return this;
-    }
-    private CategoryPage clickProsesCheckout(){
-        driver.findElement(prosesCheckout).click();
+        WebElement p = wait.until(ExpectedConditions.visibilityOfElementLocated(addPhoneNumber));
+        p.sendKeys(txt);
+        //driver.findElement(addPhoneNumber).sendKeys(txt);
         return this;
     }
 
-    public CategoryPage completeOrder(String txt, String s){
-        clickRemoveMenu().enterAddName(txt).enterAddPhoneNumber(s).clickProsesCheckout();
-        return this;
+    public CategoryPage completeOrder(Order orderForm){
+       return enterAddName(orderForm.getName()).
+        enterAddPhoneNumber(orderForm.getNumber());
     }
     //--
+
+    public CheckoutPage clickCheckoutLink(){
+        wait.until(ExpectedConditions.elementToBeClickable(checkoutLink)).click();
+        //driver.findElement(checkoutLink).click();
+        return new CheckoutPage(driver);
+    }
 
 
 }
