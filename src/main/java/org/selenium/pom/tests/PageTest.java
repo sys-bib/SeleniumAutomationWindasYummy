@@ -1,4 +1,4 @@
-package org.selenium.pom;
+package org.selenium.pom.tests;
 
 import org.openqa.selenium.By;
 import org.selenium.pom.base.BaseTest;
