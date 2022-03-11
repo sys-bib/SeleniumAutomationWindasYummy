@@ -15,10 +15,11 @@
  <li>User click Proceed To Checkout 
  <li>User mengisi email untuk melengkapi informasi order
  <li>User click tombol next untuk melanjutkan ke metode pembayaran
- <li>User memilih OVO untuk Order Method
+ <li>User memilih GoPay untuk order method
  <li>User click Choose Method
- <li>User mengisi nomor hp yang sudah teregister di ovo
- <li>User dapat menyelesaikan pembayaran dengan click Continue To Pay 
- 
- 
- 
+ <li>User menyelesaikan pembayaran dengan click Continue To Pay 
+ <li>User ingin mengubah metode pembayaran dengan click Change Payment Method
+ <li>User memilih ovo untuk order method
+ <li>User click Choose Method
+ <li>User mengisi nomor hp yang sudah terdaftar di ovo
+ <li>User menyelesaikan pembayaran dengan click Continue To Pay
