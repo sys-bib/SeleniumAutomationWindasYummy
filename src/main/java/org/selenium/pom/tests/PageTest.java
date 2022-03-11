@@ -19,8 +19,10 @@ public class PageTest extends BaseTest {
         Assert.assertEquals(checkoutPage.getProductOrder(),"Asian Tofu Lasgna"); //Cek apakah sudah sesuai orderan atau belum
         checkoutPage.enterAddEmail("habibhack@gmail.com");
         PaymentPage paymentPage = checkoutPage.clickNextLink();
-        paymentPage.clickOvoPayment();
+        paymentPage.clickGopayPayment();
         OrderSummaryPage orderSummaryPage = paymentPage.clickChooseMethodLink();
-        orderSummaryPage.enterAddOvoNumber("085887862735");
+        orderSummaryPage.clickContinueToPayLink().clickChangePaymentMethod();
+        paymentPage.clickOvoPayment().clickChooseMethodLinkOvo();
+        orderSummaryPage.getOvoNumberForm("085887862735").clickcontinuePayOvoLink();
     }
 }

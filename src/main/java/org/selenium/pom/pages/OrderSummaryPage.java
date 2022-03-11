@@ -7,16 +7,34 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.selenium.pom.base.BasePage;
 
 public class OrderSummaryPage extends BasePage {
-    private final By addOvoNumber = By.xpath("//*[@id=\"__next\"]/section/main/div/div[2]/div/div/div[1]/div[4]/div[2]/input");
+    private final By continueToPayBtn = By.xpath("//*[@id=\"__next\"]/section/main/div/div[2]/div/div/div[3]/div[2]/button");
+    private final By changePaymentMethod = By.xpath("//*[@id=\"__next\"]/section/main/div/div[2]/div/div/div[2]/div/div");
+    private final By ovoNumberForm = By.xpath("//*[@id=\"__next\"]/section/main/div/div[2]/div/div/div[1]/div[4]/div[2]/input");
+    private final By continuePayOvoBtn = By.xpath("//*[@id=\"__next\"]/section/main/div/div[2]/div/div/div[3]/div[2]/button");
 
     public OrderSummaryPage(WebDriver driver){
         super(driver);
     }
 
-    public OrderSummaryPage enterAddOvoNumber(String txt){
-        WebElement o = wait.until(ExpectedConditions.visibilityOfElementLocated(addOvoNumber));
-        o.sendKeys(txt);
-        //driver.findElement(addOvoNumber).sendKeys(txt);
+    public OrderSummaryPage clickContinueToPayLink(){
+        wait.until(ExpectedConditions.elementToBeClickable(continueToPayBtn)).click();
+        return this;
+    }
+
+    public OrderSummaryPage clickChangePaymentMethod() throws InterruptedException {
+        Thread.sleep(5000);
+        wait.until(ExpectedConditions.elementToBeClickable(changePaymentMethod)).click();
+        return this;
+    }
+
+    public OrderSummaryPage getOvoNumberForm(String txt){
+        WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(ovoNumberForm));
+        e.sendKeys(txt);
+        return this;
+    }
+
+    public OrderSummaryPage clickcontinuePayOvoLink(){
+        wait.until(ExpectedConditions.elementToBeClickable(continuePayOvoBtn)).click();
         return this;
     }
 
